@@ -5,14 +5,29 @@
 #include <sstream>
 #include <fstream>
 #include <Windows.h>
+#include "Usuario.h"
+#include "Administrador.h"
+#include "UMantenimiento.h"
+#include "Estudiante.h"
+#include "Profesor.h"
+#include "URegistro.h"
+
 using namespace std;
 
 class Interfaz
 {
+
+private:
+
+	static string read();
+
 public:
 
 	//-------------------VALIDACIONES------------------
 	static string leerString();
+	static int leerInt();
+	static int validateInt(int);
+	static void validarLetras(); //queda por hacer la validacion
 	static void color(int);
 
 
@@ -28,6 +43,9 @@ public:
 
 	//---------------------------------------------------------------
 
+	//---------------------------Usuarios--------------------------
+
+	static void crearUsuario();
 
 
 

@@ -3,6 +3,7 @@
 
 //------------------------VARIABLES GLOBALES---------------------
 int contAux = 0;
+Usuario* usuario;
 
 
 //--------------------------------------------------------------------
@@ -10,23 +11,83 @@ int contAux = 0;
 
 //---------------------VALIDACIONES-------------------------------------
 
+string Interfaz::read()
+{
+	char chain[100];
+
+	cin.getline(chain, 99);
+
+	stringstream s;
+
+	s << chain;
+
+	int size = s.str().length();
+
+	return s.str();
+}
+
 string Interfaz::leerString()
 {
 	char chain[100];
+
 	cin.getline(chain, 99);
+
 	stringstream s;
+
 	s << chain;
+
 	int size = s.str().length();
 
 	if (size == 0 || s.str()[0] == 32) {
 		if (contAux > 0) {
-			cout << "texto incorrecto, por favor ingreselo nuevamente: ";
+			cout << "Texto incorrecto, por favor ingréselo nuevamente: ";
 		}
 		contAux++;
 		return leerString();
 	}
 	contAux = 0;
 	return s.str();
+}
+
+int Interfaz::leerInt()
+{
+	string reading = read();
+	int convert;
+
+	stringstream r;
+
+	r << reading;
+
+	if (!(r >> convert)) {
+
+		cout << " Número inválido, por favor ingreselo de nuevo: " << endl;
+		return leerInt();
+	}
+	return convert;
+}
+
+int Interfaz::validateInt(int n)
+{
+	bool t;
+	int reading = leerInt();
+
+	stringstream s;
+
+	int aux = n + 1;
+
+	s << reading;
+
+	if (reading > 0 && reading < aux) { t = true; }
+	else { t = false; }
+
+	s >> reading;
+
+	if (!t) {
+
+		cout << "Solo valores entre 1 y " << n << ": " << endl;
+		return validateInt(n);
+	}
+	return reading;
 }
 
 void Interfaz::color(int c)
@@ -114,7 +175,7 @@ void Interfaz::menuSeguridad()
 
 		case '1':
 			system("cls");
-			//crear usuario
+			Interfaz::crearUsuario();
 			system("pause");
 			system("cls");
 			break;
@@ -162,7 +223,7 @@ void Interfaz::menuMantenimientoRegistro()
 		cout << "       |  4. Salir                                         |" << endl;
 		cout << "       |                                                   |" << endl;
 		cout << "       +---------------------------------------------------+" << endl;
-		cout << "       opción: ";
+		cout << "       Opción: ";
 		cin >> entrar;
 		switch (entrar) {
 
@@ -225,7 +286,7 @@ void Interfaz::menuMantenimientoEscuela()
 		cout << "       |  6. Salir                                         |" << endl;
 		cout << "       |                                                   |" << endl;
 		cout << "       +---------------------------------------------------+" << endl;
-		cout << "       opción: ";
+		cout << "       Opción: ";
 		cin >> entrar;
 		switch (entrar) {
 
@@ -301,7 +362,7 @@ void Interfaz::menuMatricula()
 		cout << "       |  4. Salir                                         |" << endl;
 		cout << "       |                                                   |" << endl;
 		cout << "       +---------------------------------------------------+" << endl;
-		cout << "       opción: ";
+		cout << "       Opción: ";
 		cin >> entrar;
 		switch (entrar) {
 
@@ -365,7 +426,7 @@ void Interfaz::menuActas()
 		cout << "       |  3. Salir                                         |" << endl;
 		cout << "       |                                                   |" << endl;
 		cout << "       +---------------------------------------------------+" << endl;
-		cout << "       opción: ";
+		cout << "       Opción: ";
 		cin >> entrar;
 		switch (entrar) {
 
@@ -402,6 +463,148 @@ void Interfaz::menuActas()
 		}
 	} while (entrar > 3);
 
+}
+
+void Interfaz::crearUsuario()
+{
+		cout << " \n";
+		cout << "       +---------------------------------------------------+" << endl;
+		cout << "       |                    Crear Usuario                  |" << endl;
+		cout << "       +---------------------------------------------------+" << endl;
+		cout << "       |                                                   |" << endl;
+		cout << "       |     Ingrese el ID de la persona:                  |" << endl;
+		cout << "       |                                                   |" << endl;
+		cout << "       +---------------------------------------------------+" << endl;
+		cout << "       ID:  ";
+		cout << endl;
+		int id = Interfaz::leerInt();
+		system("cls");
+
+		cout << " \n";
+		cout << "       +---------------------------------------------------+" << endl;
+		cout << "       |                    Crear Usuario                  |" << endl;
+		cout << "       +---------------------------------------------------+" << endl;
+		cout << "       |                                                   |" << endl;
+		cout << "       |     Ingrese el nombre completo de la persona:     |" << endl;
+		cout << "       |                                                   |" << endl;
+		cout << "       +---------------------------------------------------+" << endl;
+		cout << "       Nombre:  ";
+		string nombre = Interfaz::leerString();  //arreglar la validacion, acepta numeros
+		system("cls");
+
+		cout << " \n";
+		cout << "       +---------------------------------------------------+" << endl;
+		cout << "       |                    Crear Usuario                  |" << endl;
+		cout << "       +---------------------------------------------------+" << endl;
+		cout << "       |                                                   |" << endl;
+		cout << "       |     Ingrese la contraseña de la persona:          |" << endl;
+		cout << "       |                                                   |" << endl;
+		cout << "       +---------------------------------------------------+" << endl;
+		cout << "       Contraseña:  ";
+		string pass = Interfaz::leerString();  //arreglar la validacion de numeros mayusculas y letras
+		system("cls");
+
+
+		char op;
+		cout << " \n";
+		cout << "       +---------------------------------------------------+" << endl;
+		cout << "       |                    Crear Usuario                  |" << endl;
+		cout << "       +---------------------------------------------------+" << endl;
+		cout << "       |                                                   |" << endl;
+		cout << "       |     Elegir rol de la persona                      |" << endl;
+		cout << "       |                                                   |" << endl;
+		cout << "       |      1. Administrador                             |" << endl;
+		cout << "       |      2. Mantenimiento                             |" << endl;
+		cout << "       |      3. Registro                                  |" << endl;
+		cout << "       |      4. Estudiante                                |" << endl;
+		cout << "       |      5. Profesor                                  |" << endl;
+		cout << "       |                                                   |" << endl;
+		cout << "       +---------------------------------------------------+" << endl;
+		cout << "       Opción:  ";
+		cin >> op;
+		
+
+		do {
+			switch (op) {
+
+			case '1':
+
+				//Administrador
+
+				system("cls");
+				//bool activo = true;
+				usuario = new Administrador(id, nombre, pass, true);
+				cout << "Funciona, creo" << endl << endl;
+				system("pause");
+				system("cls");
+				Interfaz::menuSeguridad();
+				break;
+
+			case '2':
+
+				//Mantenimiento
+
+				system("cls");
+				//bool activo = true;
+				usuario = new  UMantenimiento(id, nombre, pass, true);
+				cout << "Funciona, creo";
+				system("pause");
+				system("cls");
+				Interfaz::menuSeguridad();
+				break;
+
+			case '3':
+
+				//Registro
+
+
+				system("cls");
+				//bool activo = true;
+				usuario = new  URegistro(id, nombre, pass, true);
+				cout << "Funciona, creo";
+				system("pause");
+				system("cls");
+				Interfaz::menuSeguridad();
+				break;
+
+			case '4':
+
+				//Estudiante
+				system("cls");
+				//bool activo = true;
+				usuario = new  Estudiante(id, nombre, pass, true);
+				cout << "Funciona, creo";
+				system("pause");
+				system("cls");
+				Interfaz::menuSeguridad();
+				break;
+
+			case '5':
+
+				//Profesor
+				system("cls");
+				//bool activo = true;
+				usuario = new  Profesor(id, nombre, pass, true);
+				cout << "Funciona, creo";
+				system("pause");
+				system("cls");
+				Interfaz::menuSeguridad();
+
+				break;
+
+			default:
+				cout << " \n";
+				cout << "       La opción digitada es incoreccta: " << endl;
+				cout << " \n";
+				system("pause");
+				system("cls");
+
+				break;
+
+
+			}
+		} while (op > 5);
+	 
 }
 
 

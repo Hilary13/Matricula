@@ -9,7 +9,7 @@ class Profesor :
 public:
 
 	Profesor();
-	Profesor(std::string, std::string, std::string, bool);
+	Profesor(int, std::string, std::string, bool);
 
 };
 #endif

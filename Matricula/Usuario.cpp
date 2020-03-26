@@ -4,7 +4,7 @@ Usuario::Usuario()
 {
 }
 
-Usuario::Usuario(std::string id, std::string nombre, std::string clave, bool activo)
+Usuario::Usuario(int id, std::string nombre, std::string clave, bool activo)
 {
 	this->id = id;
 	this->nombre = nombre;
@@ -14,7 +14,7 @@ Usuario::Usuario(std::string id, std::string nombre, std::string clave, bool act
 
 
 
-std::string Usuario::getID() { return id; }
+int Usuario::getID() { return id; }
 
 std::string Usuario::getNombre() { return nombre; }
 
@@ -22,7 +22,7 @@ std::string Usuario::getClave() { return clave; }
 
 bool Usuario::getActivo() { return activo; }
 
-void Usuario::setId(std::string id) { this->id = id; }
+void Usuario::setId(int id) { this->id = id; }
 
 void Usuario::setNombre(std::string nombre) { this->nombre = nombre; }
 

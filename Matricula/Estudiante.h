@@ -9,7 +9,7 @@ class Estudiante :
 public:
 
 	Estudiante();
-	Estudiante(std::string, std::string, std::string, bool);
+	Estudiante(int, std::string, std::string, bool);
 
 };
 #endif 

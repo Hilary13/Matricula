@@ -5,21 +5,21 @@
 
 class Usuario
 {
-	std::string id;
+	int id;
 	std::string nombre;
 	std::string clave;
-	bool activo;
+	bool activo = true;;
 
 public:
 	
 	Usuario();
-	Usuario(std::string, std::string, std::string, bool);
+	Usuario(int, std::string, std::string, bool);
 
-	std::string getID();
+	int getID();
 	std::string getNombre();
 	std::string getClave();
 	bool getActivo();
-	void setId(std::string);
+	void setId(int);
 	void setNombre(std::string);
 	void setClave(std::string);
 	void setActivo(bool);

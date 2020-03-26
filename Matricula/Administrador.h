@@ -8,7 +8,7 @@ class Administrador :
 {
 public:
 	Administrador();
-	Administrador(std::string, std::string, std::string, bool); 
+	Administrador(int, std::string, std::string, bool); 
 
 
 };

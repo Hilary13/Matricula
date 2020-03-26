@@ -9,7 +9,7 @@ class URegistro :
 public:
 
 	URegistro();
-	URegistro(std::string, std::string,std::string, bool);
+	URegistro(int, std::string,std::string, bool);
 
 };
 #endif
