@@ -8,12 +8,13 @@ class Usuario
 	int id;
 	std::string nombre;
 	std::string clave;
-	bool activo = true;;
+	bool activo = true;
+	int rol;
 
 public:
-	
+
 	Usuario();
-	Usuario(int, std::string, std::string, bool);
+	Usuario(int, std::string, std::string, bool, int);
 
 	int getID();
 	std::string getNombre();
@@ -23,5 +24,9 @@ public:
 	void setNombre(std::string);
 	void setClave(std::string);
 	void setActivo(bool);
+	std::string toString()const;
+	bool operator==(const Usuario&);
 };
+std::ostream& operator<<(std::ostream&, const Usuario&);
+
 #endif

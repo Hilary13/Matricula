@@ -2,6 +2,7 @@
 
 void Controladora::menuPrincipal()
 {
+
 	system("cls");
 	char entrar;
 	do {
@@ -24,39 +25,72 @@ void Controladora::menuPrincipal()
 
 		case '1':
 			system("cls");
-			Interfaz::menuSeguridad();
-			system("pause");
-			system("cls");
+			cout << "\n\n\tIngrese con un usuario de Administrador activo \n\n" << endl;
+			if (Interfaz::Seguridad(1, 0, 0)) {
+				system("cls");
+				Interfaz::menuSeguridad();
+				system("pause");
+			}
+			else {
+				cout << "\n\n\tError en usuario o contraseña. ¡Acceso denegado! \n\n" << endl;
+				system("pause");
+				system("cls");
+			}
 			break;
 
 		case '2':
 			system("cls");
-			Interfaz::menuMantenimientoRegistro();
+			cout << "\n\n\tIngrese con un usuario de Administrador o Registro activo \n\n" << endl;
+			while (Interfaz::Seguridad(1, 3, 0)) {
+				system("cls");
+				Interfaz::menuMantenimientoRegistro();
+				system("pause");
+			}
+			cout << "\n\n\tError en usuario o contraseña. ¡Acceso denegado! \n\n" << endl;
 			system("pause");
 			system("cls");
+
 			break;
 
 		case '3':
 			system("cls");
-			Interfaz::menuMantenimientoEscuela();
+			cout << "\n\n\tIngrese con un usuario de Administrador, Mantenimiento o Registro activo \n\n" << endl;
+			if (Interfaz::Seguridad(1, 2, 3)) {
+				system("cls");
+				Interfaz::menuMantenimientoEscuela();
+				system("pause");
+			}
+			cout << "\n\n\tError en usuario o contraseña. ¡Acceso denegado! \n\n" << endl;
 			system("pause");
 			system("cls");
 			break;
 
 		case '4':
 			system("cls");
-			Interfaz::menuMatricula();
+			cout << "\n\n\tIngrese con un usuario de Administrador, Mantenimiento o Estudiante activo \n\n" << endl;
+			if (Interfaz::Seguridad(1, 2, 4)) {
+				system("cls");
+				Interfaz::menuMatricula();
+				system("pause");
+			}
+			cout << "\n\n\tError en usuario o contraseña. ¡Acceso denegado! \n\n" << endl;
 			system("pause");
 			system("cls");
 			break;
 
 		case '5':
 			system("cls");
-			Interfaz::menuActas();
+			cout << "\n\n\tIngrese con un usuario de Administrador o Profesor activo \n\n" << endl;
+			if (Interfaz::Seguridad(1, 5, 0)) {
+				system("cls");
+				Interfaz::menuActas();
+				system("pause");
+			}
+			cout << "\n\n\tError en usuario o contraseña. ¡Acceso denegado! \n\n" << endl;
 			system("pause");
 			system("cls");
 			break;
-			
+
 		case '6':
 			cout << " \n";
 			cout << "       Saliendo del programa \n";
@@ -78,6 +112,8 @@ void Controladora::menuPrincipal()
 
 void Controladora::inicio()
 {
+	Interfaz::usuariosPredeterminados();
 	Interfaz::inicio();
 	Controladora::menuPrincipal();
 }
+ 

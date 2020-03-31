@@ -24,6 +24,8 @@
     <ClInclude Include="Controladora.h" />
     <ClInclude Include="Estudiante.h" />
     <ClInclude Include="Interfaz.h" />
+    <ClInclude Include="Lista.h" />
+    <ClInclude Include="MantenimientoGeneral.h" />
     <ClInclude Include="Nodo.h" />
     <ClInclude Include="Profesor.h" />
     <ClInclude Include="resource.h" />
@@ -41,7 +43,7 @@
     <ClCompile Include="Estudiante.cpp" />
     <ClCompile Include="Interfaz.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Nodo.cpp" />
+    <ClCompile Include="MantenimientoGeneral.cpp" />
     <ClCompile Include="Profesor.cpp" />
     <ClCompile Include="UMantenimiento.cpp" />
     <ClCompile Include="URegistro.cpp" />

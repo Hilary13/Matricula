@@ -1,10 +1,12 @@
 #include "Interfaz.h"
 #include "Controladora.h"
+#define ENTER 13 
+#define BACKSPACE 8
 
 //------------------------VARIABLES GLOBALES---------------------
 int contAux = 0;
 Usuario* usuario;
-
+Lista<Usuario>* L1 = new Lista<Usuario>; //Lista general de Usuarios
 
 //--------------------------------------------------------------------
 
@@ -93,6 +95,39 @@ int Interfaz::validateInt(int n)
 void Interfaz::color(int c)
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), c);
+}
+
+bool Interfaz::Seguridad(int a, int b, int c)
+{
+	int sId = 0;
+	std::string sNombre, sPass = "";
+	char caracter;
+	std::cout << "\n";
+	std::cout << "\t\t\t+---------------+" << endl;
+	std::cout << "\t\t\t| Login Usuario |" << endl;
+	std::cout << "\t\t\t+---------------+" << endl;
+	std::cout << "\n\tID: ";
+	sId = leerInt();
+	std::cout << "\n\tContraseña: ";
+	caracter = _getch();
+	sPass = "";
+	while (caracter != ENTER) {
+		if (caracter != BACKSPACE) {
+			sPass.push_back(caracter);
+			std::cout << "*";
+		}
+		else {
+			if (sPass.length() > 0) {
+				std::cout << "\b \b";
+				sPass = sPass.substr(0, sPass.length() - 1);
+			}
+		}
+		caracter = _getch();
+	}
+	Usuario* usuarioSeguridadA = new  Usuario(sId, sNombre, sPass, true, a);
+	Usuario* usuarioSeguridadB = new  Usuario(sId, sNombre, sPass, true, b);
+	Usuario* usuarioSeguridadC = new  Usuario(sId, sNombre, sPass, true, c);
+	return (L1->buscar(usuarioSeguridadA) || L1->buscar(usuarioSeguridadB) || L1->buscar(usuarioSeguridadC));
 }
 
 
@@ -465,147 +500,136 @@ void Interfaz::menuActas()
 
 }
 
+void Interfaz::menuMantenimientoAnios()
+{
+	char entrar;
+	do {
+		cout << " \n";
+		cout << "       +---------------------------------------------------+" << endl;
+		cout << "       |       Mantenimiento de años y ciclos lectivos     |" << endl;
+		cout << "       +---------------------------------------------------+" << endl;
+		cout << "       |                                                   |" << endl;
+		cout << "       |  1. Ver ciclos lectivos                           |" << endl;
+		cout << "       |  2. Ingresar ciclos lectivos                      |" << endl;
+		cout << "       |  3. Salir                                         |" << endl;
+		cout << "       |                                                   |" << endl;
+		cout << "       +---------------------------------------------------+" << endl;
+		cout << "       Opción: ";
+		cin >> entrar;
+		switch (entrar) {
+
+		case '1':
+			system("cls");
+			//ver ciclos lectivos
+			system("pause");
+			system("cls");
+			break;
+
+		case '2':
+			system("cls");
+			//ingresar los ciclos lectivos
+			system("pause");
+			system("cls");
+			break;
+
+		case '3':
+
+			system("cls");
+			Controladora::menuPrincipal();
+			system("pause");
+			system("cls");
+
+			break;
+
+		default:
+			cout << " \n";
+			cout << "       La opción digitada es incoreccta: " << endl;
+			cout << " \n";
+			system("pause");
+			system("cls");
+			break;
+		}
+	} while (entrar > 4);
+	
+}
+
+void Interfaz::usuariosPredeterminados()
+{
+
+	Usuario* a1 = new Usuario(702590608, "Felipe", "mabo", true, 1);
+	Usuario* a2 = new Usuario(117030578, "Hilary", "admin", true, 1);
+	L1->insertarInicio(a1);
+	L1->insertarInicio(a2);	
+}
+
 void Interfaz::crearUsuario()
 {
-		cout << " \n";
-		cout << "       +---------------------------------------------------+" << endl;
-		cout << "       |                    Crear Usuario                  |" << endl;
-		cout << "       +---------------------------------------------------+" << endl;
-		cout << "       |                                                   |" << endl;
-		cout << "       |     Ingrese el ID de la persona:                  |" << endl;
-		cout << "       |                                                   |" << endl;
-		cout << "       +---------------------------------------------------+" << endl;
-		cout << "       ID:  ";
-		cout << endl;
-		int id = Interfaz::leerInt();
-		system("cls");
+	cout << " \n";
+	cout << "       +---------------------------------------------------+" << endl;
+	cout << "       |                    Crear Usuario                  |" << endl;
+	cout << "       +---------------------------------------------------+" << endl;
+	cout << "       |                                                   |" << endl;
+	cout << "       |     Ingrese el ID de la persona:                  |" << endl;
+	cout << "       |                                                   |" << endl;
+	cout << "       +---------------------------------------------------+" << endl;
+	cout << "       ID:  ";
+	int id = Interfaz::leerInt();
+	system("cls");
 
-		cout << " \n";
-		cout << "       +---------------------------------------------------+" << endl;
-		cout << "       |                    Crear Usuario                  |" << endl;
-		cout << "       +---------------------------------------------------+" << endl;
-		cout << "       |                                                   |" << endl;
-		cout << "       |     Ingrese el nombre completo de la persona:     |" << endl;
-		cout << "       |                                                   |" << endl;
-		cout << "       +---------------------------------------------------+" << endl;
-		cout << "       Nombre:  ";
-		string nombre = Interfaz::leerString();  //arreglar la validacion, acepta numeros
-		system("cls");
+	cout << " \n";
+	cout << "       +---------------------------------------------------+" << endl;
+	cout << "       |                    Crear Usuario                  |" << endl;
+	cout << "       +---------------------------------------------------+" << endl;
+	cout << "       |                                                   |" << endl;
+	cout << "       |     Ingrese el nombre completo de la persona:     |" << endl;
+	cout << "       |                                                   |" << endl;
+	cout << "       +---------------------------------------------------+" << endl;
+	cout << "       Nombre:  ";
+	string nombre = Interfaz::leerString();  //arreglar la validacion, acepta numeros
+	system("cls");
 
-		cout << " \n";
-		cout << "       +---------------------------------------------------+" << endl;
-		cout << "       |                    Crear Usuario                  |" << endl;
-		cout << "       +---------------------------------------------------+" << endl;
-		cout << "       |                                                   |" << endl;
-		cout << "       |     Ingrese la contraseña de la persona:          |" << endl;
-		cout << "       |                                                   |" << endl;
-		cout << "       +---------------------------------------------------+" << endl;
-		cout << "       Contraseña:  ";
-		string pass = Interfaz::leerString();  //arreglar la validacion de numeros mayusculas y letras
-		system("cls");
-
-
-		char op;
-		cout << " \n";
-		cout << "       +---------------------------------------------------+" << endl;
-		cout << "       |                    Crear Usuario                  |" << endl;
-		cout << "       +---------------------------------------------------+" << endl;
-		cout << "       |                                                   |" << endl;
-		cout << "       |     Elegir rol de la persona                      |" << endl;
-		cout << "       |                                                   |" << endl;
-		cout << "       |      1. Administrador                             |" << endl;
-		cout << "       |      2. Mantenimiento                             |" << endl;
-		cout << "       |      3. Registro                                  |" << endl;
-		cout << "       |      4. Estudiante                                |" << endl;
-		cout << "       |      5. Profesor                                  |" << endl;
-		cout << "       |                                                   |" << endl;
-		cout << "       +---------------------------------------------------+" << endl;
-		cout << "       Opción:  ";
-		cin >> op;
-		
-
-		do {
-			switch (op) {
-
-			case '1':
-
-				//Administrador
-
-				system("cls");
-				//bool activo = true;
-				usuario = new Administrador(id, nombre, pass, true);
-				cout << "Funciona, creo" << endl << endl;
-				system("pause");
-				system("cls");
-				Interfaz::menuSeguridad();
-				break;
-
-			case '2':
-
-				//Mantenimiento
-
-				system("cls");
-				//bool activo = true;
-				usuario = new  UMantenimiento(id, nombre, pass, true);
-				cout << "Funciona, creo";
-				system("pause");
-				system("cls");
-				Interfaz::menuSeguridad();
-				break;
-
-			case '3':
-
-				//Registro
+	cout << " \n";
+	cout << "       +---------------------------------------------------+" << endl;
+	cout << "       |                    Crear Usuario                  |" << endl;
+	cout << "       +---------------------------------------------------+" << endl;
+	cout << "       |                                                   |" << endl;
+	cout << "       |     Ingrese la contraseña de la persona:          |" << endl;
+	cout << "       |                                                   |" << endl;
+	cout << "       +---------------------------------------------------+" << endl;
+	cout << "       Contraseña:  ";
+	string pass = Interfaz::leerString();  //arreglar la validacion de numeros mayusculas y letras
+	system("cls");
 
 
-				system("cls");
-				//bool activo = true;
-				usuario = new  URegistro(id, nombre, pass, true);
-				cout << "Funciona, creo";
-				system("pause");
-				system("cls");
-				Interfaz::menuSeguridad();
-				break;
+	int op;
+	cout << " \n";
+	cout << "       +---------------------------------------------------+" << endl;
+	cout << "       |                    Crear Usuario                  |" << endl;
+	cout << "       +---------------------------------------------------+" << endl;
+	cout << "       |                                                   |" << endl;
+	cout << "       |     Elegir rol de la persona                      |" << endl;
+	cout << "       |                                                   |" << endl;
+	cout << "       |      1. Administrador                             |" << endl;
+	cout << "       |      2. Mantenimiento (Escuela)                   |" << endl;
+	cout << "       |      3. Registro                                  |" << endl;
+	cout << "       |      4. Estudiante                                |" << endl;
+	cout << "       |      5. Profesor                                  |" << endl;
+	cout << "       |                                                   |" << endl;
+	cout << "       +---------------------------------------------------+" << endl;
+	cout << "       Opción:  ";
+	cin >> op;
 
-			case '4':
-
-				//Estudiante
-				system("cls");
-				//bool activo = true;
-				usuario = new  Estudiante(id, nombre, pass, true);
-				cout << "Funciona, creo";
-				system("pause");
-				system("cls");
-				Interfaz::menuSeguridad();
-				break;
-
-			case '5':
-
-				//Profesor
-				system("cls");
-				//bool activo = true;
-				usuario = new  Profesor(id, nombre, pass, true);
-				cout << "Funciona, creo";
-				system("pause");
-				system("cls");
-				Interfaz::menuSeguridad();
-
-				break;
-
-			default:
-				cout << " \n";
-				cout << "       La opción digitada es incoreccta: " << endl;
-				cout << " \n";
-				system("pause");
-				system("cls");
-
-				break;
-
-
-			}
-		} while (op > 5);
-	 
+	system("cls");
+	usuario = new  Usuario(id, nombre, pass, true, op);
+	L1->insertarInicio(usuario);
+	cout << "\n\tUsuario ingresado correctamente" << endl;
+	std::cout << "\tUsuario: " << std::endl;
+	std::cout << usuario->toString() << "\n\n" << std::endl;
+	system("pause");
+	system("cls");
+	Interfaz::menuSeguridad();
 }
+
 
 
 

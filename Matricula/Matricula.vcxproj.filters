@@ -48,6 +48,12 @@
     <ClInclude Include="UMantenimiento.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="MantenimientoGeneral.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Lista.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -71,9 +77,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Nodo.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Profesor.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -84,6 +87,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="UMantenimiento.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="MantenimientoGeneral.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
